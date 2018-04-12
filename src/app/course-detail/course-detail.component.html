@@ -1,0 +1,48 @@
+<div *ngIf="sku as s">
+    <h2 *ngIf="!s.skuKey">New Course</h2>
+    <h2 *ngIf="s.skuKey">Course {{ s.skuKey }}</h2>
+    <form (ngSubmit)="onSubmit()" #classSessionForm="ngForm" [ngStyle]="{disabled : saving}">
+        <div class="form-row row">
+          <div class="form-group col-md-4">
+            <label for="vendorKeyField">Vendor</label>
+            <select class="form-control custom-select" id="vendorKeyField" name="vendorKeyField" [(ngModel)]="s.skuVendor.vendorKey" required>
+              <option></option>
+              <option *ngFor="let v of vendors" [value]="v.vendorKey">
+                  {{ v.vendorName }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="vendorSkuCodeField">Vendor Sku Code</label>
+            <input type="text" class="form-control" id="vendorSkuCodeField" name="vendorSkuCodeField" [(ngModel)]="s.vendorSkuCode">
+          </div>
+        </div>
+        <div class="form-row row">
+          <div class="form-group col-md-8">
+              <label for="skuNameField">Name</label>
+              <input type="text" class="form-control" id="skuNameField" name="skuNameField" [(ngModel)]="s.skuName" required>
+          </div>
+        </div>
+        <div class="form-row row">
+          <div class="form-group col-md-8">
+            <label for="skuDescriptionField">Description</label>
+            <input type="text" class="form-control" id="skuDescriptionField" name="skuDescriptionField" [(ngModel)]="s.skuDescription">
+          </div>
+        </div>
+        <div class="form-row row">
+          <div class="form-group col-md-2">
+            <label for="classLengthField">Class Length (Days)</label>
+            <input type="number" class="form-control" id="classLengthField" name="classLengthField" [(ngModel)]="s.classLength" required>
+          </div>
+        </div>
+        <div *ngIf="s.skuKey; then updateButtons; else createButtons"></div>
+        <ng-template #updateButtons>
+            <button class="btn btn-secondary" [routerLink]="['../']">Close</button>
+            <button type="submit" class="btn btn-success">Update</button>
+        </ng-template>
+        <ng-template #createButtons>
+            <button class="btn btn-secondary" [routerLink]="['../']">Cancel</button>
+            <button type="submit" class="btn btn-success">Create</button>
+        </ng-template>
+    </form>
+  </div>

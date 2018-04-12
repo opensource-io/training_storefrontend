@@ -1,0 +1,61 @@
+<div *ngIf="classSession as cs">
+    <h2 *ngIf="!cs.classSessionKey">New Class Session</h2>
+    <h2 *ngIf="cs.classSessionKey">Class Session {{ cs.classSessionKey }}</h2>
+    <form (ngSubmit)="onSubmit()" #classSessionForm="ngForm" [ngStyle]="{disabled : saving}">
+        <div class="form-row row">
+          <div class="form-group col-md-8">
+            <label for="skuKeyField">Course</label>&nbsp;
+            <select class="form-control custom-select" id="skuKeyField" name="skuKeyField" [(ngModel)]="cs.classSessionSku.skuKey" required>
+              <option></option>
+              <option *ngFor="let s of skus" [value]="s.skuKey">
+                  {{ s.vendorSkuCode }} {{ s.skuName }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row row">
+          <div class="form-group col-md-2">
+              <label for="startDateField">Start Date</label>
+              <input type="date" class="form-control" id="startDateField" name="startDateField" [(ngModel)]="cs.classSessionStartDate" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="startTimeField">Start Time</label>
+            <input type="time" class="form-control" id="startTimeField" name="startTimeField" [(ngModel)]="cs.classSessionStartTime" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="endTimeField">End Time</label>
+            <input type="time" class="form-control" id="endTimeField" name="endTimeField" [(ngModel)]="cs.classSessionEndTime" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="timeZoneField">Time Zone</label>
+            <select class="form-control custom-select" id="timeZoneField" name="timeZoneField" [(ngModel)]="cs.classSessionTimeZone" required>
+              <option></option>
+              <option value="PST">PST</option>
+              <option value="MST">MST</option>
+              <option value="CST">CST</option>
+              <option value="EST">EST</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row row">
+          <div class="form-group col-md-4">
+            <label for="addressKeyField">Location</label>&nbsp;
+            <select class="form-control custom-select" id="addressKeyField" name="addressKeyField" [(ngModel)]="cs.classSessionAddress.addressKey" required>
+              <option></option>
+              <option *ngFor="let a of addresses" [value]="a.addressKey">
+                {{ a.city }} {{ a.countrySubdivision }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div *ngIf="cs.classSessionKey; then updateButtons; else createButtons"></div>
+        <ng-template #updateButtons>
+            <button class="btn btn-secondary" [routerLink]="['../']">Close</button>
+            <button type="submit" class="btn btn-success">Update</button>
+        </ng-template>
+        <ng-template #createButtons>
+            <button class="btn btn-secondary" [routerLink]="['../']">Cancel</button>
+            <button type="submit" class="btn btn-success">Create</button>
+        </ng-template>
+    </form>
+  </div>

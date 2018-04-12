@@ -1,0 +1,41 @@
+<div *ngIf="address as a">
+    <h2 *ngIf="!a.addressKey">New Location</h2>
+    <h2 *ngIf="a.addressKey">Location {{ a.addressKey }}</h2>
+    <form (ngSubmit)="onSubmit()" #classSessionForm="ngForm" [ngStyle]="{disabled : saving}">
+        <div class="form-row row">
+          <div class="form-group col-md-8">
+            <label for="line1Field">Line 1</label>
+            <input type="text" class="form-control" id="line1Field" name="line1Field" [(ngModel)]="a.addressLine1">
+          </div>
+        </div>
+        <div class="form-row row">
+          <div class="form-group col-md-8">
+            <label for="line2Field">Line 2</label>
+            <input type="text" class="form-control" id="line2Field" name="line2Field" [(ngModel)]="a.addressLine2">
+          </div>
+        </div>
+        <div class="form-row row">
+          <div class="form-group col-md-2">
+              <label for="cityField">City</label>
+              <input type="text" class="form-control" id="cityField" name="cityField" [(ngModel)]="a.city" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="regionField">State or Region</label>
+            <input type="text" class="form-control" id="regionField" name="regionField" [(ngModel)]="a.countrySubdivision" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="postalCodeField">Postal Code</label>
+            <input type="text" class="form-control" id="postalCodeField" name="postalCodeField" [(ngModel)]="a.postalCode">
+          </div>
+        </div>
+        <div *ngIf="a.addressKey; then updateButtons; else createButtons"></div>
+        <ng-template #updateButtons>
+            <button class="btn btn-secondary" [routerLink]="['../']">Close</button>
+            <button type="submit" class="btn btn-success">Update</button>
+        </ng-template>
+        <ng-template #createButtons>
+            <button class="btn btn-secondary" [routerLink]="['../']">Cancel</button>
+            <button type="submit" class="btn btn-success">Create</button>
+        </ng-template>
+    </form>
+  </div>

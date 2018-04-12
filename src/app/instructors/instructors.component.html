@@ -1,0 +1,20 @@
+<div [@routerTransition]>
+        <app-page-header [heading]="'Instructors'" [icon]="'fa-group'"></app-page-header>
+        <table class="instructors table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Key</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="instructor" *ngFor="let i of instructors">
+                    <td>{{ i.instructorKey }}</td>
+                    <td>{{ i.instructorName }}</td>
+                    <td>{{ i.instructorEmail }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    

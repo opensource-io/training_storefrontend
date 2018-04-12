@@ -1,0 +1,33 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Class Sessions'" [icon]="'fa-group'"></app-page-header>
+    <table class="trainingclasses table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Key</th>
+                <th>Sku</th>
+                <th>Course</th>
+                <th>Days</th>
+                <th>Start Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>TZ</th>
+                <th>Location</th>
+                <th><button (click)="onCreate($event)" class="btn btn-success fa fa-plus"></button></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="trainingclass" *ngFor="let cs of classSessions" [ngClass]="cs.classSessionSku.skuVendor.vendorName" (click)="onUpdate($event, cs)">
+                <td>{{ cs.classSessionKey }}</td>
+                <td>{{ cs.classSessionSku.vendorSkuCode }}</td>
+                <td>{{ cs.classSessionSku.skuName }}</td>
+                <td>{{ cs.classSessionSku.classLength }}</td>
+                <td>{{ cs.classSessionStartDate | date:'MMM d' }}</td>
+                <td>{{ cs.classSessionStartTime }}</td>
+                <td>{{ cs.classSessionEndTime }}</td>
+                <td>{{ cs.classSessionTimeZone }}</td>
+                <td>{{ cs.classSessionAddress.city }} {{ cs.classSessionAddress.countrySubdivision }}</td>
+                <td><button (click)="onDelete($event, cs)" class="btn btn-secondary fa fa-trash"></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

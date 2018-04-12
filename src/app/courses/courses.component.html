@@ -1,0 +1,26 @@
+<div [@routerTransition]>
+        <app-page-header [heading]="'Courses'" [icon]="'fa-group'"></app-page-header>
+        <table class="trainingclasses table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Key</th>
+                    <th>Vendor Code</th>
+                    <th>Name</th>
+                    <th># Days</th>
+                    <th>Vendor</th>
+                    <th><button (click)="onCreate($event)" class="btn btn-success fa fa-plus"></button></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="skus" *ngFor="let s of skus" (click)="onUpdate($event, s)">
+                    <td>{{ s.skuKey }}</td>
+                    <td>{{ s.vendorSkuCode }}</td>
+                    <td>{{ s.skuName }}</td>
+                    <td>{{ s.classLength }}</td>
+                    <td>{{ s.skuVendor.vendorName }}</td>
+                    <td><button (click)="onDelete($event, s)" class="btn btn-secondary fa fa-trash"></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    

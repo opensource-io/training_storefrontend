@@ -1,0 +1,28 @@
+<div [@routerTransition]>
+        <app-page-header [heading]="'Locations'" [icon]="'fa-group'"></app-page-header>
+        <table class="addresses table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Key</th>
+                    <th>Addr Line 1</th>
+                    <th>Addr Line 2</th>
+                    <th>City</th>
+                    <th>Region</th>
+                    <th>Postal Code</th>
+                    <th><button (click)="onCreate($event)" class="btn btn-success fa fa-plus"></button></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="skus" *ngFor="let a of addresses" (click)="onUpdate($event, a)">
+                    <td>{{ a.addressKey }}</td>
+                    <td>{{ a.addressLine1 }}</td>
+                    <td>{{ a.addressLine2 }}</td>
+                    <td>{{ a.city }}</td>
+                    <td>{{ a.countrySubdivision }}</td>
+                    <td>{{ a.postalCode }}</td>
+                    <td><button (click)="onDelete($event, a)" class="btn btn-secondary fa fa-trash"></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    

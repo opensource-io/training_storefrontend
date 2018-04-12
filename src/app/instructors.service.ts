@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Instructor } from './instructor';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../environments/environment';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class InstructorsService {

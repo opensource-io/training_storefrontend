@@ -13,7 +13,6 @@ import { UserService } from './user.service';
 import { SkusService } from './skus.service';
 import { AddressesService } from './addresses.service';
 import { InstructorsService } from './instructors.service';
-import { InlineEditorModule } from '@qontu/ngx-inline-editor';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -31,7 +30,6 @@ export function HttpLoaderFactory(http: HttpClient) {
         FormsModule,
         HttpClientModule,
         AppRoutingModule,
-        InlineEditorModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

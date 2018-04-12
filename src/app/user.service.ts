@@ -4,6 +4,7 @@ import { ClassSession } from './class-session';
 import { Observable } from 'rxjs/Observable';
 import { User } from './user';
 import { environment } from '../environments/environment';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class UserService {

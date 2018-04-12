@@ -6,7 +6,7 @@ import {
   NotificationComponent,
   ChatComponent
 } from './components';
-import { StatModule } from '../../shared';
+import { StatModule } from './../stat/stat.module';
 import { DashboardComponent } from './dashboard.component';
 
 describe('DashboardComponent', () => {
